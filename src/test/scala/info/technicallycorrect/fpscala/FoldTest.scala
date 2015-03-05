@@ -25,4 +25,8 @@ class FoldTest extends FlatSpec with Matchers {
     Fold.reverse(List(1, 2, 3)) should be(List(3, 2, 1))
   }
 
+  "foldRight" should "fold from right" in {
+    Fold.foldRight(List(3, 2, 1), 0)(_ - _) should be(2)
+  }
+
 }

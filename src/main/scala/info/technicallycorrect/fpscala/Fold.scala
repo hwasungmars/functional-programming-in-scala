@@ -32,4 +32,12 @@ object Fold {
     foldLeft(list, Nil: List[Int])(fn)
   }
 
+  def foldRight[A, B](as: List[A], z: B)(f: (A, B) => B): B = {
+    // We want to express f(a0, f(a1, ..., f(an, z))).  We cannot directly return a result of
+    // type B because foldLeft runs from left to right.  We need to delay the evaluation and
+    // build up a function instead.  Consider at the moment, i then we have g = f(a0, ..., f(ai, _))
+    // We should get the next element and compose it g(f(a, _)).  That is the solution below.
+    foldLeft(as, (b: B) => b)((g, a) => b => g(f(a, b)))(z)
+  }
+
 }

@@ -29,4 +29,20 @@ class FoldTest extends FlatSpec with Matchers {
     Fold.foldRight(List(3, 2, 1), 0)(_ - _) should be(2)
   }
 
+  "append" should "append an element to a list" in {
+    Fold.append(List(1, 2), 3) should be(List(1, 2, 3))
+  }
+
+  "concat" should "flatten lists of list" in {
+    Fold.concat(List(List(1), List(2, 3))) should be(List(1, 2, 3))
+  }
+
+  "inc" should "increment the integers in a list" in {
+    Fold.inc(List(1, 2, 3)) should be(List(2, 3, 4))
+  }
+
+  "toString" should "return a toString list" in {
+    Fold.toString(List(1, 2, 3)) should be(List("1.0", "2.0", "3.0"))
+  }
+
 }

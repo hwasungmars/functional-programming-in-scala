@@ -31,4 +31,14 @@ object PatternMatching {
     case l :: ls => l :: init(ls)
   }
 
+  def hasSubsequence[A](sup: List[A], sub: List[A]): Boolean = {
+    def loop(big: List[A], small: List[A]): Boolean = {
+      if (big.length < small.length) false
+      else if (big.take(small.length) == small) true
+      else loop(big.tail, small)
+    }
+
+    loop(sup, sub)
+  }
+
 }

@@ -20,4 +20,9 @@ class MapTest extends FlatSpec with Matchers {
     Map.filterViaFlatMap(List(1, 2, 3))(_ % 2 == 0) should be(List(2))
   }
 
+  "zipWith" should "behave like zip map" in {
+    Map.zipWith(List(1, 2, 3), List(6, 5, 4))(_ + _) should be(List(7, 7, 7))
+    Map.zipWith(List(1, 2, 3), List(6, 5))(_ + _) should be(List(7, 7))
+  }
+
 }

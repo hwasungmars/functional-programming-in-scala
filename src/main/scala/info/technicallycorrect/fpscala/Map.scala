@@ -21,4 +21,13 @@ object Map {
     Fold.foldRight(as, List[B]())((e, r) => f(e) :: r)
   }
 
+  def zipWith[A, B](first: List[A], second: List[A])(f: (A, A) => B): List[B] = {
+    def loop(xl: List[A], yl: List[A]): List[B] = {
+      if (xl.isEmpty || yl.isEmpty) List[B]()
+      else f(xl.head, yl.head) :: loop(xl.tail, yl.tail)
+    }
+
+    loop(first, second)
+  }
+
 }

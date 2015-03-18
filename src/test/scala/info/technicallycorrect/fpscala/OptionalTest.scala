@@ -2,7 +2,7 @@ package info.technicallycorrect.fpscala
 
 import org.scalatest.{Matchers, FlatSpec}
 
-class OptionTest extends FlatSpec with Matchers {
+class OptionalTest extends FlatSpec with Matchers {
 
   "map" should "map the element" in {
     val fn: Int => Int = x => x + 2

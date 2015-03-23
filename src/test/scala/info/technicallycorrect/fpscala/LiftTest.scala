@@ -16,4 +16,15 @@ class LiftTest extends FlatSpec with Matchers {
     Lift.sequence(List(Some(2), Some(3), Some(5))) should be(Some(List(2, 3, 5)))
   }
 
+  "traverse" should "return None if f returns None" in {
+    val evenNone: Int => Option[Int] = (x: Int) => if (x % 2 == 0) None else Some(x)
+    Lift.traverse(List(2, 3, 5))(evenNone) should be(None)
+    Lift.traverse(List(3, 5, 7))(evenNone) should be(Some(List(3, 5, 7)))
+  }
+
+  "sequence2" should "behave as sequence but implemented with traverse" in {
+    Lift.sequence2(List(Some(2), None, Some(3))) should be(None)
+    Lift.sequence2(List(Some(2), Some(3), Some(5))) should be(Some(List(2, 3, 5)))
+  }
+
 }
